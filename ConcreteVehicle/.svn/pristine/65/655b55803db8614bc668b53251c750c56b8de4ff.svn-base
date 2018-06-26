@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/info_panel_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/android_top_bg" >
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.0dip"
+            android:src="@drawable/return_shouye_background" />
+
+        <TextView
+            android:id="@+id/tv_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="45.0dip"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:paddingTop="10.0dip"
+            android:text="@string/main_car_list"
+            android:textColor="#ffffffff"
+            android:textSize="18.0dip" />
+
+        <ImageView
+            android:id="@+id/pulldown"
+            android:layout_width="wrap_content"
+            android:layout_height="45.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_toRightOf="@id/tv_condition"
+            android:src="@drawable/arrow_down"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_condition_choices"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativelayout_top"
+        android:background="@color/info_panel_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="5.0dip"
+        android:paddingLeft="10.0dip"
+        android:paddingRight="10.0dip"
+        android:paddingTop="5.0dip" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="2.0dip"
+            android:background="@drawable/edittext_search_bg"
+            android:completionThreshold="1"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="3.0dip"
+            android:paddingLeft="3.0dip"
+            android:paddingRight="3.0dip"
+            android:src="@drawable/iv_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/iv_search"
+            android:text="搜索"
+            android:textColor="@color/lightblack" />
+    </RelativeLayout>
+
+    <!-- <RadioGroup -->
+    <!-- android:id="@+id/rg_condition_choices" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="40dp" -->
+    <!-- android:layout_below="@id/relativelayout_top" -->
+    <!-- android:focusable="true" -->
+    <!-- android:focusableInTouchMode="true" -->
+    <!-- android:gravity="center" -->
+    <!-- android:orientation="horizontal" -->
+    <!-- android:paddingBottom="5.0dip" -->
+    <!-- android:paddingLeft="10.0dip" -->
+    <!-- android:paddingRight="10.0dip" -->
+    <!-- android:paddingTop="5.0dip" > -->
+
+
+    <!-- <RadioButton -->
+    <!-- android:id="@+id/rbtn_all" -->
+    <!-- android:layout_width="30dp" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_gravity="center" -->
+    <!-- android:layout_weight="1.0" -->
+    <!-- android:background="@drawable/rb_toggle_bg" -->
+    <!-- android:button="@null" -->
+    <!-- android:gravity="center" -->
+    <!-- android:text="全部目标" -->
+    <!-- android:textColor="@color/lightblack" -->
+    <!-- android:checked="true" -->
+    <!-- /> -->
+
+
+    <!-- <RadioButton -->
+    <!-- android:id="@+id/rbtn_attention" -->
+    <!-- android:layout_width="30dp" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_gravity="center" -->
+    <!-- android:layout_weight="1.0" -->
+    <!-- android:background="@drawable/rb_toggle_bg" -->
+    <!-- android:button="@null" -->
+    <!-- android:gravity="center" -->
+    <!-- android:text="我的关注" -->
+    <!-- android:textColor="@color/lightblack" /> -->
+
+
+    <!-- <RadioButton -->
+    <!-- android:id="@+id/rbtn_store" -->
+    <!-- android:layout_width="30dp" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_gravity="center" -->
+    <!-- android:layout_weight="1.0" -->
+    <!-- android:background="@drawable/rb_toggle_bg" -->
+    <!-- android:button="@null" -->
+    <!-- android:gravity="center" -->
+    <!-- android:text="我的收藏" -->
+    <!-- android:textColor="@color/lightblack" /> -->
+    <!-- </RadioGroup> -->
+
+    <RelativeLayout
+        android:id="@+id/show_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/rl_condition_choices" >
+
+        <LinearLayout
+            android:id="@+id/ll_listview_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:baselineAligned="false" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" >
+
+                <com.hbjy.view.XListView
+                    android:id="@+id/carlist"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/carinfo_bg"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@drawable/carinfo_divider"
+                    android:listSelector="@drawable/listview_item_selector" />
+
+                <ImageView
+                    android:id="@+id/ic_userview"
+                    android:layout_width="35.0dip"
+                    android:layout_height="35.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_user_rigth"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

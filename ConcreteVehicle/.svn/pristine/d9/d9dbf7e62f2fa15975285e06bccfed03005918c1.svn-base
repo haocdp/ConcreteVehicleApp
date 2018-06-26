@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/info_panel_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/android_top_bg" >
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.0dip"
+            android:src="@drawable/return_shouye_background" />
+
+        <TextView
+            android:id="@+id/tab5_rl_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="45.0dip"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:paddingTop="10.0dip"
+            android:text="任务单详情"
+            android:textColor="#ffffffff"
+            android:textSize="18.0dip" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4.0dip"
+            android:src="@drawable/iv_search" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_maininfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativelayout_top"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/carinfo_bg" >
+
+        <LinearLayout
+            android:id="@+id/ll_first"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_planId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RW201401032103451439"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_euserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="站点一"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_second"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_first"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发车区域 :"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_startpoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="测试区域一"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="目标工地"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_endpiont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="目标工地2"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_third"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_second"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="施工单位 :"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_site"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="运距:"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_transDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="32.9Km"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_four"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_third"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已发车次 :"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1000"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="预计（方）:"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_transCap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="1232"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="交付方:"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_transedCap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="1232"
+                android:textColor="#FF0000"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_five"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_four"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="进度:"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="13sp" />
+
+            <ProgressBar
+                android:id="@+id/pb_schedule"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:max="100"
+                android:progress="20"
+                android:visibility="visible" />
+        </LinearLayout>
+    </RelativeLayout>
+    
+	<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/rl_maininfo" 
+        android:layout_marginTop="10dp"
+        >
+
+        <ListView
+            android:id="@+id/lv_vehicle_tasks"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/carinfo_bg"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@drawable/carinfo_divider"
+            android:listSelector="@drawable/listview_item_selector" />
+    </RelativeLayout>
+    
+</RelativeLayout>

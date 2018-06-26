@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2012 Steven Rudenko
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+
+    <color name="main_textcolor">#ff676767</color>
+    <color name="info_text_bg">#ff9f9e9e</color>
+    <color name="info_panel_bg">#ffeeeeee</color>
+    <color name="main_background">#ff04690d</color>
+    <color name="obdbg">#ff2a3137</color>
+    <color name="obd_textcolor">#ffc8c8c8</color>
+    <color name="obd_cljbxx">#ff6dc066</color>
+    <color name="obd_clgzzd">#ff3636a9</color>
+    <color name="obd_zchdsjx">#ff962da3</color>
+    <color name="obd_clxsxx">#ff2da0a3</color>
+    <color name="obd_clbxxx">#ffe95b2a</color>
+    <color name="obdtextcolor">#ff6e6e6e</color>
+    <color name="carinfotextcolor">#ff000000</color>
+    <color name="transparent">#00000000</color>
+    
+     <color name="text_huise1_color">#ff545454</color>
+     
+     <color name="main_tab_bg">#37a0ec</color>
+     <color name="main_tab_press_bg">#398ce6</color>
+     
+     <!-- 设备信息tab的字体颜色 -->
+     <color name="lightblack">#020202</color>
+     <color name="lightwhite">#ddd</color>
+     <!-- 动画效果的颜色 -->
+     <color name="white">#fff</color>
+     <!-- 展开列表 父级颜色 -->
+     <color name="gold">#aaFFD700</color>
+     
+     <color name="bg_item_normal">#FFFFFF</color>
+     <color name="bg_item_press">#DCDCDC</color>
+     <color name="bg_mile_record">#5de2e2e3</color>
+     <color name="bg_white">#00ffffff</color>
+     
+
+</resources>

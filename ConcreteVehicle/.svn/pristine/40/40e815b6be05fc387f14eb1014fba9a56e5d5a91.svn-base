@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff" >
+
+    <RelativeLayout
+        android:id="@+id/tab2_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:id="@+id/tab2_top_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/android_top_bg">
+
+            <ImageView
+                android:id="@+id/iv_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4.0dip"
+                android:src="@drawable/return_shouye_background" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45.0dip"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:paddingTop="10.0dip"
+                android:text="车辆监控"
+                android:textColor="#ffffffff"
+                android:textSize="18.0sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/CarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab2_top_menu"
+            android:layout_centerHorizontal="true"
+            android:autoText="true"
+            android:background="#fff4f0f0"
+            android:textColor="#ff000000"
+            android:visibility="gone" />
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/CarInfo"
+            android:clickable="true" />
+
+        <LinearLayout
+            android:id="@+id/ll_jishi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab2_top_menu"
+            android:layout_margin="3.0dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_shuaxintime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ditu_sxtime"
+                android:gravity="center"
+                android:padding="5.0dip"
+                android:textColor="@color/text_huise1_color"
+                android:textSize="13.0sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ditu_sxtimetext"
+                android:gravity="left|center"
+                android:padding="5.0dip"
+                android:text="@string/mhzdsx"
+                android:textColor="@color/text_huise1_color"
+                android:textSize="13.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomlayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <!-- <LinearLayout -->
+            <!-- android:id="@+id/ll__buttom_menu" -->
+            <!-- android:layout_width="fill_parent" -->
+            <!-- android:layout_height="40.0dip" -->
+            <!-- android:layout_alignParentBottom="true" -->
+            <!-- android:orientation="horizontal" > -->
+
+
+            <!-- <Button -->
+            <!-- android:id="@+id/btn_startorstop" -->
+            <!-- android:layout_width="45.0dip" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:background="@drawable/btn_start_xml_bg" /> -->
+
+
+            <!-- <SeekBar -->
+            <!-- android:id="@+id/seekbar" -->
+            <!-- android:layout_width="wrap_content" -->
+            <!-- android:layout_height="40.0dip" -->
+            <!-- android:layout_weight="1.0" -->
+            <!-- android:background="@drawable/progress_bg" -->
+            <!-- android:paddingLeft="5.0dip" -->
+            <!-- android:paddingRight="6.0dip" -->
+            <!-- android:progress="0" -->
+            <!-- android:progressDrawable="@drawable/playback_seekbar_style" -->
+            <!-- android:thumb="@drawable/playback_seekbar_thumb" /> -->
+
+
+            <!-- <Button -->
+            <!-- android:id="@+id/btn_sudu" -->
+            <!-- android:layout_width="45.0dip" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:background="@drawable/one_speed_xml_bg" /> -->
+            <!-- </LinearLayout> -->
+
+            <RelativeLayout
+                android:id="@+id/tab22__buttom_menu"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/progress_bg1"
+                android:gravity="center_horizontal"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:id="@+id/tab2_buttom_menu1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40.0dip"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip" >
+
+                    <ImageView
+                        android:id="@+id/start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/start2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab2_buttom_menu2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50.0dip"
+                    android:layout_toRightOf="@id/tab2_buttom_menu1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip" >
+
+                    <ImageView
+                        android:id="@+id/post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/post2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab2_buttom_menu4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50.0dip"
+                    android:layout_toRightOf="@id/tab2_buttom_menu2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip" >
+
+                    <ImageView
+                        android:id="@+id/stop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/stop2" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/RightMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/ll_jishi"
+            android:orientation="vertical"
+            android:paddingRight="3.0dip" >
+
+            <ImageView
+                android:id="@+id/iv_map_layer"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:background="@drawable/map_layer" />
+
+            <ImageView
+                android:id="@+id/iv_map_lukuang"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/map_lukuang_close" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/BlowMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="30.0dip"
+        android:layout_marginTop="30.0dip"
+        android:orientation="vertical"
+        android:paddingLeft="3.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_mycar_location"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:background="@drawable/mycar_location" />
+
+        <ImageView
+            android:id="@+id/my_location"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/my_location" />
+
+        <ImageView
+            android:id="@+id/track_play"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/track_play" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_control_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="55.0dip"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_zoomout"
+                android:layout_width="65.0dip"
+                android:layout_height="40.0dip"
+                android:background="@drawable/btn_map_zoomout_bg"
+                android:paddingTop="3.0dip" />
+
+            <Button
+                android:id="@+id/btn_zoomin"
+                android:layout_width="65.0dip"
+                android:layout_height="40.0dip"
+                android:background="@drawable/btn_map_zoomin_bg"
+                android:paddingTop="3.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

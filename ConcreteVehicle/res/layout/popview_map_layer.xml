@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popview_dialog_bg"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/tv_mapmode_3d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/map_mode_3d"
+        android:gravity="center_horizontal"
+        android:text="3D" />
+
+    <TextView
+        android:id="@+id/tv_mapmode_satellite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/map_mode_satellite"
+        android:gravity="center_horizontal"
+        android:text="卫星图" />
+
+    <TextView
+        android:id="@+id/tv_mapmode_plain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/map_mode_plain"
+        android:gravity="center_horizontal"
+        android:text="平面图" />
+
+</LinearLayout>

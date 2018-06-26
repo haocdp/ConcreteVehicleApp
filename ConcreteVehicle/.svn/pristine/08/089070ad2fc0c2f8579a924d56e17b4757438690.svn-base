@@ -1,0 +1,411 @@
+package com.hbjy;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.hbjy.beans.UserClient;
+import com.hbjy.carlocation.R;
+import com.hbjy.nets.NetWork;
+import com.hbjy.utils.Constant;
+import com.hbjy.view.XListView;
+import com.hbjy.view.XListView.IXListViewListener;
+
+public class SiteInfoListFragment extends Fragment implements IXListViewListener,OnClickListener{
+
+	private String BaseUrl;// url地址
+	private View view;
+	//顶层部分
+	private RelativeLayout relativelayout_top;
+	private XListView xlv_site;
+	private ImageView iv_return;
+	private int index=1;
+	ProgressDialog progresscircle;
+	private SiteListAdapter siteListAdapter;
+	private Toast mToast;
+	
+	private List<UserClient> sites = new ArrayList<UserClient>();//车牌号
+	List<UserClient> list = new ArrayList<UserClient>();//生成的数据
+	private RelativeLayout rl_condition_choices;//查询框
+	//查询
+	private AlertDialog dialog ;
+	private View dialogView;
+	
+	//查询框
+	private AutoCompleteTextView act_keyword;//关键字
+	private ImageView iv_search2;
+	private Handler mHandler = new Handler()
+	{
+		public void handleMessage(android.os.Message msg) 
+		{
+			switch (msg.what) {
+			
+			case 3:
+				if(list.size()>=0)
+				{
+					sites.addAll(list);
+					siteListAdapter.notifyDataSetChanged();
+					onLoad();
+				}
+				progresscircle.dismiss();
+				break;
+			case 4:// 获取数据失败
+				xlv_site.setPullLoadEnable(false);
+				showToast("没有更多数据");
+				index--;
+				onLoad();
+				progresscircle.dismiss();
+				break;
+			case 5:// 获取数据失败
+				showToast("获取数据失败，请重试");
+				index--;//回滚
+				onLoad();
+				progresscircle.dismiss();
+				break;
+			default:
+				break;
+			}
+		};
+	};
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		//进度环显示
+		progresscircle=new ProgressDialog(getActivity());
+		progresscircle.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progresscircle.setMessage("正在加载站点信息中，请稍等");
+		progresscircle.setIndeterminate(false);
+		progresscircle.setCancelable(true);
+		progresscircle.show();
+		SharedPreferences sp = getActivity().getSharedPreferences(Constant.FILENAME, 0);
+		String userName = sp.getString(Constant.USERNAME, "");
+		if(userName.equals(""))
+		{
+			progresscircle.dismiss();
+			return;
+		}
+		else
+		{		
+			BaseUrl = NetWork.USERCLIENT_URL +"getPlanMotor/"+userName+"/";
+		}
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_site_info_list, null);
+//		BaseUrl = NetWork.USERCLIENT_URL + "getPlanMotor/admin/";// 
+		index=1;
+		geneItems(BaseUrl+index);
+		findView();
+		setupEvent();
+		return view;
+	}
+
+	private void geneItems(final String url) {
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try{
+					Log.d("Result",url);
+					String result = NetWork.getResponseString(url);
+					
+					Log.d("Result",result);
+					if ("[]".equals(result)) {
+						Log.d("Result", "没有数据");
+						mHandler.sendEmptyMessage(4);// 没有数据
+						return;
+					}
+					list.clear();
+					list = JSON.parseArray(result,UserClient.class);
+					Log.d("Vehicle_1",list.get(0).getEuserName()+","+list.get(1).getUserId());
+					Log.d("Count",sites.size()+"");
+					mHandler.sendEmptyMessage(3);//更新列表
+				}
+				catch(Exception e)
+				{
+					mHandler.sendEmptyMessage(5);// 没有数据
+				}
+				
+			}
+		}).start();
+	}
+
+	private void setupEvent() {
+		// TODO Auto-generated method stub
+		iv_return.setOnClickListener(this);
+		
+		iv_search2.setOnClickListener(this);
+		siteListAdapter = new SiteListAdapter(getActivity(),sites);
+		xlv_site.setPullLoadEnable(true);
+		xlv_site.setXListViewListener(this);
+		xlv_site.setAdapter(siteListAdapter);
+		rl_condition_choices.setOnClickListener(this);
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				// TODO Auto-generated method stub
+				relativelayout_top.setVisibility(View.VISIBLE);
+			}
+		});
+		xlv_site.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				UserClient uc = sites.get(position-1);
+				Intent it = new Intent(getActivity(),TaskListActivity.class);
+				
+				it.putExtra("userId", uc.getUserId());
+				it.putExtra("euserName", uc.getEuserName());
+				getActivity().startActivity(it);
+			}
+			
+		});
+		
+	}
+
+	private void findView() {
+		// TODO Auto-generated method stub
+		relativelayout_top = (RelativeLayout) view.findViewById(R.id.relativelayout_top);
+		xlv_site = (XListView) view.findViewById(R.id.sitelist);
+		iv_return = (ImageView) view.findViewById(R.id.iv_return);
+		rl_condition_choices = (RelativeLayout) view.findViewById(R.id.rl_condition_choices);
+		
+		dialog = new AlertDialog.Builder(getActivity()).create();
+		dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_search, null);
+		
+		//关键字
+		act_keyword = (AutoCompleteTextView) dialogView.findViewById(R.id.act_keyword);
+		iv_search2 = (ImageView) dialogView.findViewById(R.id.iv_search2);
+		
+		dialog.getWindow().setGravity(Gravity.TOP|Gravity.LEFT);
+		dialog.setView(dialogView,0,0,0,0);
+		dialog.getWindow().setLayout(WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId())
+		{
+		case R.id.iv_return:
+			getActivity().finish();
+			break;
+		//界面的查询
+		case R.id.rl_condition_choices:
+			act_keyword.setText("");//清空
+			initAutoComplete();//初始化自动填充框
+			relativelayout_top.setVisibility(View.GONE);//隐藏最上面的
+			dialog.show();
+			break;
+		//弹出框的搜索按钮
+		case R.id.iv_search2:
+			progresscircle.show();
+			String keyword=act_keyword.getText().toString();
+			SharedPreferences sp = getActivity().getSharedPreferences(Constant.FILENAME, 0);
+			String userName = sp.getString(Constant.USERNAME, "");
+			index=1;
+			if(keyword.equals(""))
+				BaseUrl = NetWork.USERCLIENT_URL +"getPlanMotor/"+userName+"/";
+			else
+				BaseUrl = NetWork.USERCLIENT_URL +"getPlanMotorById/"+userName+"/"+keyword+"/";
+			sites.clear();
+			geneItems(BaseUrl+index);
+			dialog.cancel();
+			saveHistory();//保存历史记录
+			break;
+		}
+	}
+
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		index=1;//初始化
+		sites.clear();
+		xlv_site.setPullLoadEnable(true);
+		geneItems(BaseUrl+index);
+	}
+
+	@Override
+	public void onLoadMore() {
+		// TODO Auto-generated method stub
+		index++;
+		geneItems(BaseUrl+index);
+		//siteListAdapter.notifyDataSetChanged();
+	}
+	private void onLoad() {
+		xlv_site.stopRefresh();
+		xlv_site.stopLoadMore();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
+		String date = format.format(new Date());
+		xlv_site.setRefreshTime(date);
+	}
+	
+	public class SiteListAdapter extends BaseAdapter {
+		private LayoutInflater mInflater;
+		private List<UserClient> contents;
+
+		public SiteListAdapter(Context context) {
+			super();
+			// TODO Auto-generated constructor stub
+			mInflater = LayoutInflater.from(context);
+		}
+		
+		public SiteListAdapter(Context context,List<UserClient> contents) {
+			super();
+			// TODO Auto-generated constructor stub
+			mInflater = LayoutInflater.from(context);
+			this.contents = contents;
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return contents.size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return contents.get(arg0);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			ViewHolder holder;
+			
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.site_info_list_item, null);
+				holder = new ViewHolder();
+				holder.tv_site = (TextView)convertView.findViewById(R.id.site);
+				convertView.setTag(holder);
+			}else {
+				holder = (ViewHolder)convertView.getTag();
+			}
+			holder.tv_site.setText(contents.get(position).getEuserName());
+			return convertView;
+		}
+
+	}
+
+	public class ViewHolder {
+		public TextView tv_site;
+	}
+	
+	
+	private void saveHistory() {
+		String text = act_keyword.getText().toString();
+		SharedPreferences sp = CarInfoApplication.mInstance.getSharedPreferences(Constant.FILENAME, 0);
+		String save_Str = sp.getString(Constant.SITEHISTORY, "");
+		Log.d("save_Str", save_Str);
+		String[] hisArrays = save_Str.split(",");
+		
+		for (int i = 0; i < hisArrays.length-1; i++) {
+			if (hisArrays[i].equals(text)) {
+				return;
+			}
+		}
+		StringBuilder sb;
+		if(hisArrays.length>Constant.HISTORYNUM)//大于最大的就覆盖第一条
+		{		
+			sb = new StringBuilder(save_Str.replaceAll("[^,]+,$", ""));//先将第一条去除
+			
+		}
+		else
+		{
+			sb = new StringBuilder(save_Str);
+			
+		}
+		sb.insert(0, text + ",");//在最前面
+		Log.d("保存成功", sb.toString());
+		sp.edit().putString(Constant.SITEHISTORY, sb.toString()).commit();
+	}
+
+	private void initAutoComplete() {
+		SharedPreferences sp = CarInfoApplication.mInstance.getSharedPreferences(Constant.FILENAME, 0);
+        String longhistory = sp.getString(Constant.SITEHISTORY, "");  
+        String[] histories = longhistory.split(",");  
+        if(!longhistory.equals(""))
+        {
+	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),  
+	        		android.R.layout.simple_dropdown_item_1line, histories);
+	        act_keyword.setAdapter(adapter);  
+	        act_keyword.setDropDownHeight(350);  
+	        act_keyword.setThreshold(1);//设置输入1个字符串后就出现提示  
+	        act_keyword.setCompletionHint("最近的5条记录");  
+	        act_keyword  
+	                .setOnFocusChangeListener(new OnFocusChangeListener() {  
+	                    @Override  
+	                    public void onFocusChange(View v, boolean hasFocus) {  
+	                        AutoCompleteTextView view = (AutoCompleteTextView) v;  
+	                        if (hasFocus) {  
+	                            view.showDropDown();  
+	                        }  
+	                    }  
+	                });  
+        }
+       
+	}
+	
+	/**
+	 * 显示Toast消息
+	 * 
+	 * @param msg
+	 */
+	private void showToast(String msg) {
+		if (mToast == null) {
+			mToast = Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT);
+		} else {
+			mToast.setText(msg);
+			mToast.setDuration(Toast.LENGTH_SHORT);
+		}
+		mToast.show();
+	}
+	
+}

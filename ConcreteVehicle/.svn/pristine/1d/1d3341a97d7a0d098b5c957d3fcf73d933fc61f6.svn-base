@@ -1,0 +1,655 @@
+package com.hbjy;
+
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.hbjy.adapter.ConditionAdapter;
+import com.hbjy.beans.Vehicle;
+import com.hbjy.carlocation.R;
+import com.hbjy.nets.NetWork;
+import com.hbjy.utils.Constant;
+import com.hbjy.view.LeftPanel;
+import com.hbjy.view.XListView;
+import com.hbjy.view.XListView.IXListViewListener;
+
+public class CarInfoListFragment extends Fragment implements
+		IXListViewListener, OnClickListener {
+
+	private String BaseUrl;
+	private int index = 1;
+	// 顶层部分
+	private RelativeLayout relativelayout_top;
+	private ImageView back;
+	private XListView carList;
+	private ImageView pullDown;
+	private RelativeLayout rl_condition_choices;
+	// 查询
+	private AlertDialog dialog;
+	private View dialogView;
+	// 查询框
+	private AutoCompleteTextView act_keyword;// 关键字
+	private ImageView iv_search2;
+
+	private TextView tv_condition;// 头部窗口
+	private PopupWindow mPopupWindow;// 泡泡窗口
+	private View contentView;// 弹出来的窗口
+	private ListView listView;// 窗口中的listview
+	private ArrayList<String> conditions;// 筛选条件内容
+	private ConditionAdapter conditionAdapter;// 适配器
+
+	private ListAdapter contentAdapter;
+	private List<Vehicle> contents = new ArrayList<Vehicle>();// 车牌号
+	List<Vehicle> list = new ArrayList<Vehicle>();// 生成的数据
+
+	private Toast mToast;
+	private Handler mHandler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 3:
+				Log.d("数据加载完毕", "更新");
+				if (list.size() >= 0) {
+					contents.addAll(list);
+					contentAdapter.notifyDataSetChanged();
+					onLoad();
+				}
+				progresscircle.dismiss();
+				break;
+			case 4:// 获取数据失败
+				carList.setPullLoadEnable(false);
+				index--;// 回滚
+				onLoad();
+				progresscircle.dismiss();
+				showToast("没有更多数据");
+				break;
+			case 5:// 获取数据失败
+				showToast("获取数据失败，请重试");
+				onLoad();
+				progresscircle.dismiss();
+				index--;// 回滚
+				break;
+			case 10:
+				LinearLayout.LayoutParams localLayoutParams = (LinearLayout.LayoutParams) leftPanel
+						.getLayoutParams();
+				localLayoutParams.leftMargin = leftPanel.MAX_WIDTH;
+				leftPanel.setLayoutParams(localLayoutParams);
+				break;
+			case 11:
+				localLayoutParams = (LinearLayout.LayoutParams) leftPanel
+						.getLayoutParams();
+				localLayoutParams.leftMargin = -leftPanel.MAX_WIDTH;
+				leftPanel.setLayoutParams(localLayoutParams);
+				break;
+			default:
+				break;
+			}
+		};
+	};
+
+	private LinearLayout listview_content;
+	private LeftPanel leftPanel;// 左侧面板
+	private ImageView ic_userclients = null;// 点击图片
+	private View userclient;// 单位列表
+	private ProgressDialog progresscircle;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		// 进度环显示
+		progresscircle = new ProgressDialog(getActivity());
+		progresscircle.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progresscircle.setMessage("正在加载车辆信息中，请稍等");
+		progresscircle.setIndeterminate(false);
+		progresscircle.setCancelable(true);
+		progresscircle.show();
+
+		SharedPreferences sp = getActivity().getSharedPreferences(
+				Constant.FILENAME, 0);
+		String userName = sp.getString(Constant.USERNAME, "");
+		if (userName.equals("")) {
+			progresscircle.dismiss();
+			return;
+		} else {
+			BaseUrl = NetWork.INFOVEHICLE_URL + "getAll/" + userName + "/";
+		}
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.fragment_car_info_list, null);
+		index = 1;
+		geneItems(BaseUrl + index);
+		relativelayout_top = (RelativeLayout) view
+				.findViewById(R.id.relativelayout_top);
+		back = (ImageView) view.findViewById(R.id.iv_return);
+		carList = (XListView) view.findViewById(R.id.carlist);
+		carList.setPullLoadEnable(true);
+		carList.setXListViewListener(this);
+		pullDown = (ImageView) view.findViewById(R.id.pulldown);
+		tv_condition = (TextView) view.findViewById(R.id.tv_condition);
+
+		back.setOnClickListener(this);
+
+		// 条件框
+		rl_condition_choices = (RelativeLayout) view
+				.findViewById(R.id.rl_condition_choices);
+		rl_condition_choices.setOnClickListener(this);
+		// 输入搜索框
+		dialog = new AlertDialog.Builder(getActivity()).create();
+		// dialog.setCanceledOnTouchOutside(false);
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {// 窗口消失事件
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				// TODO Auto-generated method stub
+				relativelayout_top.setVisibility(View.VISIBLE);// 重新显示
+			}
+		});
+		dialogView = LayoutInflater.from(getActivity()).inflate(
+				R.layout.dialog_search, null);
+		// 关键字
+		act_keyword = (AutoCompleteTextView) dialogView
+				.findViewById(R.id.act_keyword);
+		iv_search2 = (ImageView) dialogView.findViewById(R.id.iv_search2);
+
+		dialog.getWindow().setGravity(Gravity.TOP | Gravity.LEFT);
+		dialog.getWindow().setLayout(WindowManager.LayoutParams.FILL_PARENT,
+				WindowManager.LayoutParams.WRAP_CONTENT);
+		dialog.setView(dialogView, 0, 0, 0, 0);
+
+		iv_search2.setOnClickListener(this);
+		// dialog.setInverseBackgroundForced(false);
+		contentAdapter = new ListAdapter(getActivity(), contents);
+		carList.setAdapter(contentAdapter);
+		viewController();
+
+		// 初始化左侧面板
+		this.listview_content = (LinearLayout) view
+				.findViewById(R.id.ll_listview_content);
+		ic_userclients = (ImageView) view.findViewById(R.id.ic_userview);
+		this.leftPanel = new LeftPanel(getActivity(), 50, -1);
+		this.leftPanel.setBindView(ic_userclients);
+		// 设置监听器
+		this.leftPanel
+				.setOnPanelStatusChangedListener(new LeftPanel.OnPanelStatusChangedListener() {
+
+					// LinearLayout.LayoutParams localLayoutParams =
+					// (LinearLayout.LayoutParams) leftPanel.getLayoutParams();
+					@Override
+					public void onPanelOpened(LeftPanel paramLeftPanel) {
+						// TODO Auto-generated method stub
+						mHandler.sendEmptyMessage(10);
+
+					}
+
+					@Override
+					public void onPanelClosed(LeftPanel paramLeftPanel) {
+						// TODO Auto-generated method stub
+						// localLayoutParams.leftMargin = -leftPanel.MAX_WIDTH;
+						mHandler.sendEmptyMessage(11);
+
+					}
+				});
+		// this.leftPanel.setContentView(carList);
+		this.listview_content.addView(leftPanel, 0);
+
+		return view;
+	}
+
+	void geneItems(final String url) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					Log.d("Result", url);
+					String result = NetWork.getResponseString(url);
+
+					Log.d("Result", result);
+					if ("[]".equals(result)) {
+						Log.d("Result", "没有数据");
+						mHandler.sendEmptyMessage(4);// 没有数据
+						return;
+					}
+					list.clear();
+					list = JSON.parseArray(result, Vehicle.class);
+					mHandler.sendEmptyMessage(3);// 更新列表
+				} catch (Exception e) {
+					mHandler.sendEmptyMessage(5);// 没有数据
+				}
+
+			}
+		}).start();
+	}
+
+	public void viewController() {
+		conditionClick click = new conditionClick();
+		// tv_condition.setOnClickListener(click);
+		pullDown.setOnClickListener(click);
+
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onDetach();
+				getActivity().finish();
+			}
+		});
+		carList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Vehicle v = contents.get(arg2 - 1);
+				Intent it = new Intent(getActivity(), InfoCarLocActivity.class);
+
+				it.putExtra("vehicleId", v.vehicleId);
+				it.putExtra("longitude", v.longitude);
+				it.putExtra("latitude", v.latitude);
+				it.putExtra("vehiclenum", v.vehiclenum);
+
+				// it.putExtra("oilVolumn", v.oilVolumn);
+				// it.putExtra("speed", v.speed);
+				// it.putExtra("mileage", v.mileage);
+				// it.putExtra("status", v.status);
+				// it.putExtra("inserttime", v.inserttime);
+				// it.putExtra("gpsgeoposition", v.gpsgeoposition);
+				getActivity().startActivity(it);
+
+			}
+		});
+
+	}
+
+	class conditionClick implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			showPopupwindow(v);// 显示泡泡窗口
+		}
+
+	}
+
+	public class ListAdapter extends BaseAdapter {
+		private LayoutInflater mInflater;
+		private List<Vehicle> contents;
+
+		public ListAdapter(Context context) {
+			super();
+			// TODO Auto-generated constructor stub
+			mInflater = LayoutInflater.from(context);
+		}
+
+		public ListAdapter(Context context, List<Vehicle> contents) {
+			super();
+			// TODO Auto-generated constructor stub
+			mInflater = LayoutInflater.from(context);
+			this.contents = contents;
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return contents.size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return contents.get(arg0);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			ViewHolder holder;
+
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.car_info_list_item,
+						null);
+				holder = new ViewHolder();
+				holder.tv_carnumber = (TextView) convertView
+						.findViewById(R.id.tv_carnumber);
+				holder.tv_accstate = (TextView) convertView
+						.findViewById(R.id.tv_accstate);
+				holder.tv_speed = (TextView) convertView
+						.findViewById(R.id.tv_speed);
+				holder.tv_inserttime = (TextView) convertView
+						.findViewById(R.id.tv_inserttime);
+				holder.tv_gpsgeoposition = (TextView) convertView
+						.findViewById(R.id.tv_gpsgeoposition);
+				holder.iv_cartype = (ImageView) convertView
+						.findViewById(R.id.iv_cartype);
+				holder.iv_CarIcon = (ImageView) convertView
+						.findViewById(R.id.CarIcon);
+
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			Vehicle v = contents.get(position);
+			holder.tv_carnumber.setText(v.vehicleId);
+			holder.tv_accstate.setText(v.accstatus);
+			holder.tv_speed.setText(v.speed + " Km/h");
+			holder.tv_inserttime.setText(v.inserttime);
+
+			holder.iv_cartype.setImageDrawable(getResources().getDrawable(
+					getImage(v.vehicleType)));
+			String locmode = "";
+			if (v.gpsgeoposition != null && !v.gpsgeoposition.trim().isEmpty()) {
+				locmode = v.gpsgeoposition.split("、")[2];
+			} else
+				locmode = "非定位";
+			holder.tv_gpsgeoposition.setText(locmode);
+			holder.iv_CarIcon.setImageDrawable(getCarIcon(v.status));
+			final int p = position;
+
+			return convertView;
+		}
+
+		public int getImage(String pic) {// 通过文件名找到id
+			if (pic == null || pic.trim().equals("")) {
+				return R.drawable.icon;
+			}
+			Class draw = R.drawable.class;
+			try {
+				Field field = draw.getDeclaredField(pic);
+				return field.getInt(pic);
+			} catch (SecurityException e) {
+				return R.drawable.icon;
+			} catch (NoSuchFieldException e) {
+				return R.drawable.icon;
+			} catch (IllegalArgumentException e) {
+				return R.drawable.icon;
+			} catch (IllegalAccessException e) {
+				return R.drawable.icon;
+			}
+		}
+
+		private Drawable getCarIcon(String status) {
+			Resources r = getResources();
+			if (Constant.vehicleStatesOnlineRun.equals(status)) {
+				return r.getDrawable(R.drawable.c41);// 在线
+			}
+			if (Constant.vehicleStatesOnlineWarn.equals(status))// 报警
+			{
+				return r.getDrawable(R.drawable.c43);
+			}
+			if (Constant.vehicleStatesPaseGreen.equals(status))// 在线停车
+			{
+				return r.getDrawable(R.drawable.c44);
+			}
+			if (Constant.vehicleStatesPaseWarn.equals(status))// 警告停车
+			{
+				return r.getDrawable(R.drawable.c45);
+			}
+			if (Constant.vehicleStatesPaseBlue.equals(status))// 离线停车
+			{
+				return r.getDrawable(R.drawable.c46);
+			}
+			if (Constant.vehicleStatesOffOnline.equals(status))// 从未上传
+			{
+				return r.getDrawable(R.drawable.c42);
+			}
+			return r.getDrawable(R.drawable.c40);// 离线，默认
+
+		}
+
+	}
+
+	public class ViewHolder {
+		public TextView tv_carnumber;
+		public TextView tv_accstate;
+		public TextView tv_speed;
+		public TextView tv_inserttime;
+		public TextView tv_gpsgeoposition;
+		public ImageView iv_cartype;
+		public ImageView iv_CarIcon;
+
+	}
+
+	public void showPopupwindow(View parent) {
+		// TODO Auto-generated method stub
+		if (mPopupWindow == null) {
+			Log.d("mPopupWindow", "为空");
+			LayoutInflater mLayoutInflater = LayoutInflater.from(getActivity());
+			contentView = mLayoutInflater.inflate(R.layout.group_list, null);
+			listView = (ListView) contentView.findViewById(R.id.lv_group);
+			conditions = new ArrayList<String>();
+			conditions.add("全部");
+			conditions.add(Constant.vehicleStatesOnlineRun);// 行驶中
+			conditions.add(Constant.vehicleStatesOnlineWarn);// 行驶中
+			conditions.add(Constant.vehicleStatesPaseGreen);// 在线停车
+			conditions.add(Constant.vehicleStatesPaseWarn);// 警告停车
+			conditions.add(Constant.vehicleStatesPaseBlue);// 离线停车
+			conditions.add(Constant.vehicleStatesOffOnlineBlue);// 离线
+			// conditions.add(Constant.vehicleStatesOffOnline);//从未上传
+
+			conditionAdapter = new ConditionAdapter(getActivity(), conditions);
+			listView.setAdapter(conditionAdapter);
+			mPopupWindow = new PopupWindow(contentView,
+					LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			// 监听选择事件
+			listView.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					// TODO Auto-generated method stub
+					mPopupWindow.dismiss();
+					tv_condition.setText(conditions.get(position));
+					SharedPreferences sp = getActivity().getSharedPreferences(
+							Constant.FILENAME, 0);
+					String userName = sp.getString(Constant.USERNAME, "");
+					index = 1;
+					if (position == 0)
+						BaseUrl = NetWork.INFOVEHICLE_URL + "getAll/"
+								+ userName + "/";
+					else
+						BaseUrl = NetWork.INFOVEHICLE_URL + "getAll/"
+								+ userName + "/";
+
+					// contents.clear();
+					// geneItems(BaseUrl + index);
+
+				}
+
+			});
+
+		}
+		mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+		mPopupWindow.setFocusable(true);
+
+		// 显示的位置为:屏幕的宽度的1/16
+		int xPos = getActivity().getWindowManager().getDefaultDisplay()
+				.getWidth() / 16;
+
+		mPopupWindow.showAsDropDown(parent, xPos, 0);
+
+	}
+
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		index = 1;// 初始化
+		contents.clear();
+		carList.setPullLoadEnable(true);// 刷新后允许加载更多
+		geneItems(BaseUrl + index);
+
+	}
+
+	@Override
+	public void onLoadMore() {
+		// TODO Auto-generated method stub
+		// conditionAdapter.notifyDataSetChanged();
+		index++;
+		geneItems(BaseUrl + index);
+
+	}
+
+	private void onLoad() {
+		carList.stopRefresh();
+		carList.stopLoadMore();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
+		String date = format.format(new Date());
+		carList.setRefreshTime(date);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.rl_condition_choices:
+			Log.d("查询框", "查询框被点击");
+			act_keyword.setText("");// 清空
+			initAutoComplete();// 初始化自动填充框
+			relativelayout_top.setVisibility(View.GONE);// 隐藏最上面的
+			dialog.show();
+			break;
+		case R.id.iv_search2:
+			progresscircle.show();
+			String keyword = act_keyword.getText().toString();
+			SharedPreferences sp = getActivity().getSharedPreferences(
+					Constant.FILENAME, 0);
+			String userName = sp.getString(Constant.USERNAME, "");
+			index = 1;
+			if (keyword.equals(""))
+				BaseUrl = NetWork.INFOVEHICLE_URL + "getAll/" + userName + "/";
+			else
+				BaseUrl = NetWork.INFOVEHICLE_URL + "getById/" + userName + "/"
+						+ keyword + "/";
+			contents.clear();
+			geneItems(BaseUrl + index);
+			saveHistory();// 保存历史记录
+			// tv_condition.setText("目标列表");//搜索结果为全部列表的
+			dialog.cancel();
+
+			Log.d("保存成功", "保存成功");
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	private void saveHistory() {
+		String text = act_keyword.getText().toString();
+		SharedPreferences sp = CarInfoApplication.mInstance
+				.getSharedPreferences(Constant.FILENAME, 0);
+		String save_Str = sp.getString(Constant.CARHISTORY, "");
+		Log.d("save_Str", save_Str);
+		String[] hisArrays = save_Str.split(",");
+		for (int i = 0; i < hisArrays.length - 1; i++) {
+			if (hisArrays[i].equals(text)) {
+				Log.d("历史记录", "已经保存");
+				return;
+			}
+		}
+		StringBuilder sb;
+		if (hisArrays.length >= Constant.HISTORYNUM)// 大于最大的就覆盖第一条
+		{
+			sb = new StringBuilder(save_Str.replaceAll("[^,]+,$", ""));// 先将第一条去除
+
+		} else {
+			sb = new StringBuilder(save_Str);
+
+		}
+		sb.insert(0, text + ",");// 在最前面
+		Log.d("保存成功", sb.toString());
+		sp.edit().putString(Constant.CARHISTORY, sb.toString()).commit();
+	}
+
+	private void initAutoComplete() {
+		SharedPreferences sp = CarInfoApplication.mInstance
+				.getSharedPreferences(Constant.FILENAME, 0);
+		String longhistory = sp.getString(Constant.CARHISTORY, "nothing");
+		String[] histories = longhistory.split(",");
+		if (!longhistory.equals("")) {
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					getActivity(), android.R.layout.simple_dropdown_item_1line,
+					histories);
+			act_keyword.setAdapter(adapter);
+			act_keyword.setDropDownHeight(350);
+			act_keyword.setThreshold(1);// 设置输入1个字符串后就出现提示
+			act_keyword.setCompletionHint("最近的5条记录");
+			act_keyword.setOnFocusChangeListener(new OnFocusChangeListener() {
+				@Override
+				public void onFocusChange(View v, boolean hasFocus) {
+					AutoCompleteTextView view = (AutoCompleteTextView) v;
+					if (hasFocus) {
+						view.showDropDown();
+					}
+				}
+			});
+		}
+
+	}
+
+	/**
+	 * 显示Toast消息
+	 * 
+	 * @param msg
+	 */
+	private void showToast(String msg) {
+		if (mToast == null) {
+			mToast = Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT);
+		} else {
+			mToast.setText(msg);
+			mToast.setDuration(Toast.LENGTH_SHORT);
+		}
+		mToast.show();
+	}
+
+}

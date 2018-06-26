@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="TimeArray">
+        <item>结束时间1个小时内的轨迹</item>
+        <item>结束时间2个小时内的轨迹</item>
+        <item>结束时间3个小时内的轨迹</item>
+        <item>结束时间4个小时内的轨迹</item>
+        <item>结束时间6个小时内的轨迹</item>
+        <item>结束时间12个小时内的轨迹</item>
+    </string-array>
+    <string-array name="SpeedArray">
+        <item>不过滤</item>
+        <item>过滤速度5一下的轨迹点</item>
+        <item>过滤速度30一下的轨迹点</item>
+        <item>过滤速度60一下的轨迹点</item>
+        
+    </string-array>
+</resources>

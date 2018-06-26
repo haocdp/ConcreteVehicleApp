@@ -1,0 +1,180 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context="com.hbjy.carlocation.ShowUserProfileActivity" >
+
+    <RelativeLayout
+	        android:id="@+id/user_detail_relativelayout_top"
+	        android:layout_width="fill_parent"
+	        android:layout_height="48.0dip"
+	        android:layout_alignParentTop="true"
+	        android:background="@color/main_tab_bg" >
+	
+	        <ImageView
+	            android:id="@+id/user_profile_return"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_centerVertical="true"
+	            android:layout_marginLeft="4.0dip"
+	            android:src="@drawable/return_shouye_background" />
+	
+	        <TextView
+	            android:id="@+id/tab5_rl_tv"
+	            android:layout_width="wrap_content"
+	            android:layout_height="45.0dip"
+	            android:layout_centerInParent="true"
+	            android:gravity="center"
+	            android:text="个人资料"
+	            android:textColor="#ffffffff"
+	            android:textSize="18.0dip" />
+	
+	</RelativeLayout>
+    
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_below="@id/user_detail_relativelayout_top"
+	    android:background="@color/info_panel_bg"
+	    android:paddingTop="@dimen/activity_vertical_margin" >
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+		    android:background="@color/white"
+	        android:orientation="vertical" >
+	
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35dp"
+		        android:orientation="horizontal" >
+
+		        <TextView
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_weight="1"
+		            android:paddingLeft="15dp"
+		            android:text="昵称"
+		            android:textColor="#cdc9c9"
+		            android:textSize="18sp" />
+		        
+		        <TextView
+		            android:id="@+id/user_nickName"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_marginRight="10dp"
+		            android:layout_weight="2"
+		            android:textColor="#000000"
+		            android:textSize="18sp" />
+		        
+		    </LinearLayout>
+		    <ImageView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/carinfo_divider"/>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35dp"
+		        android:orientation="horizontal" >
+
+		        <TextView
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_weight="1"
+		            android:paddingLeft="15dp"
+		            android:text="性别"
+		            android:textColor="#cdc9c9"
+		            android:textSize="18sp" />
+		        
+		        <TextView
+		            android:id="@+id/user_gender"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_marginRight="10dp"
+		            android:layout_weight="2"
+		            android:textColor="#000000"
+		            android:textSize="18sp" />
+		        
+		    </LinearLayout>
+		    <ImageView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/carinfo_divider"/>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35dp"
+		        android:orientation="horizontal" >
+
+		        <TextView
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_weight="1"
+		            android:paddingLeft="15dp"
+		            android:text="出生日期"
+		            android:textColor="#cdc9c9"
+		            android:textSize="18sp" />
+		        
+		        <TextView
+		            android:id="@+id/user_birthday"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_marginRight="10dp"
+		            android:layout_weight="2"
+		            android:textColor="#000000"
+		            android:textSize="18sp" />
+		        
+		    </LinearLayout>
+		    <ImageView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/carinfo_divider"/>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        >
+
+		        <TextView
+		            android:layout_width="0dp"
+		            android:layout_height="35dp"
+		            android:layout_gravity="center_vertical"
+		            android:layout_weight="1"
+		            android:gravity="center_vertical"
+		            android:paddingLeft="15dp"
+		            android:text="简介"
+		            android:textColor="#cdc9c9"
+		            android:textSize="18sp" />
+		        
+		        <TextView
+		            android:id="@+id/user_introduction"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:layout_marginRight="10dp"
+		            android:layout_weight="2"
+		            android:padding="5dp"
+		            android:textColor="#000000"
+		            android:textSize="18sp" />
+		        
+		    </LinearLayout>
+		    <ImageView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/carinfo_divider"/>
+	    
+	    </LinearLayout>
+	
+	</RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/info_panel_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/android_top_bg" >
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.0dip"
+            android:src="@drawable/return_shouye_background" />
+
+        <TextView
+            android:id="@+id/tab5_rl_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="45.0dip"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:paddingTop="10.0dip"
+            android:text="任务单列表"
+            android:textColor="#ffffffff"
+            android:textSize="18.0dip" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4.0dip"
+            android:src="@drawable/iv_search" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/dateSelect"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/iv_datepre"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/date_pre" />
+
+        <TextView
+            android:id="@+id/tv_showDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textColor="@color/lightblack"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/iv_datenext"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="13dp"
+            android:src="@drawable/date_next" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/dateSelect"
+        android:layout_below="@id/relativelayout_top" >
+
+        <com.hbjy.view.XListView
+            android:id="@+id/xlv_tasks"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/carinfo_bg"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@drawable/carinfo_divider"
+            android:listSelector="@drawable/listview_item_selector" />
+    </RelativeLayout>
+
+    
+
+</RelativeLayout>

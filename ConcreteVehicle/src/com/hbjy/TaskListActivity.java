@@ -1,0 +1,367 @@
+package com.hbjy;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.hbjy.beans.PlanConcreteTran;
+import com.hbjy.carlocation.R;
+import com.hbjy.nets.NetWork;
+import com.hbjy.utils.Constant;
+import com.hbjy.view.XListView;
+import com.hbjy.view.XListView.IXListViewListener;
+
+public class TaskListActivity extends Activity implements IXListViewListener,
+		OnClickListener {
+
+	private XListView xlv_task;
+	private ImageView iv_return;
+	private ImageView iv_datepre;
+	private ImageView iv_datenext;
+	private TextView tv_showDate;
+	
+	private int index = 1;
+
+	private TaskListAdapter taskListAdapter;
+	private String BaseUrl;
+	private String SiteName;
+	private Handler mHandler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 3:
+				if(list.size()>=0)
+				{
+					planConcreteTranList.addAll(list);		
+					taskListAdapter.notifyDataSetChanged();
+					onLoad();
+				}
+				progresscircle.dismiss();
+			default:
+				break;
+			}
+		};
+	};
+
+	private List<PlanConcreteTran> planConcreteTranList = new ArrayList<PlanConcreteTran>();// 任务单
+	List<PlanConcreteTran> list = new ArrayList<PlanConcreteTran>();//生成的数据
+	private ProgressDialog progresscircle;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		index = 1;
+		//进度环显示
+		progresscircle=new ProgressDialog(TaskListActivity.this);
+		progresscircle.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progresscircle.setMessage("正在加载车队信息中，请稍等");
+		progresscircle.setIndeterminate(false);
+		progresscircle.setCancelable(true);
+		progresscircle.show();
+		setContentView(R.layout.activity_task_info_list);
+		Intent it = getIntent();
+		SharedPreferences sp = getSharedPreferences(Constant.FILENAME, 0);
+		String userName = sp.getString(Constant.USERNAME, "");
+		if(userName.equals(""))
+			return;
+		else	
+			BaseUrl = NetWork.USERCLIENT_URL + "getPlanDetailBySite/"+userName+"/"
+			+ it.getStringExtra("userId")+"/";
+		
+		
+//		BaseUrl = NetWork.USERCLIENT_URL + "getPlanDetailBySite/admin/"
+//				+ it.getStringExtra("userId")+"/";
+		SiteName = it.getStringExtra("euserName");
+		geneItems();
+		findView();
+		setupEvent();		
+	}
+
+	private void setupEvent() {
+		// TODO Auto-generated method stub
+		iv_return.setOnClickListener(this);
+		taskListAdapter = new TaskListAdapter(this, planConcreteTranList);
+		xlv_task.setPullLoadEnable(true);
+		xlv_task.setXListViewListener(this);
+		xlv_task.setAdapter(taskListAdapter);
+		xlv_task.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				PlanConcreteTran pct = planConcreteTranList.get(position-1);
+				Intent intent = new Intent(TaskListActivity.this,
+						TaskDetailActivity.class);
+				
+				intent.putExtra("fplanId", pct.getFplanId());
+				intent.putExtra("startPoint", pct.getStartPoint());
+				intent.putExtra("endPoint", pct.getEndPoint());
+				intent.putExtra("transCap", pct.getTransCap());//预计方
+				intent.putExtra("transDistance", pct.getTransDistance());//运输距离
+				intent.putExtra("startTime", pct.getStartTime());
+				intent.putExtra("endTime", pct.getEndTime());
+				intent.putExtra("count", pct.getCount());//车次
+				intent.putExtra("transedCap", pct.getTransedCap());//交付方
+				intent.putExtra("euserName", SiteName);//站点名字
+				intent.putExtra("site",pct.getSite());//施工单位								
+				startActivity(intent);
+
+			}
+
+		});
+	}
+
+	private void findView() {
+		// TODO Auto-generated method stub
+		xlv_task = (XListView) findViewById(R.id.xlv_tasks);
+		iv_return = (ImageView) findViewById(R.id.iv_return);
+		iv_datepre=(ImageView)findViewById(R.id.iv_datepre);
+		iv_datenext=(ImageView)findViewById(R.id.iv_datenext);
+		tv_showDate=(TextView)findViewById(R.id.tv_showDate);						
+	}
+
+	private void geneItems() {
+
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				String url = BaseUrl+index;
+				try {
+
+					String result = NetWork.getResponseString(url);
+					Log.d("Result", result);
+					list.clear();
+					list = JSON.parseArray(result,PlanConcreteTran.class);
+					Log.d("任务单",list.get(0).getFplanId()+","+list.get(0).getConcreteName()+
+							","+list.get(0).getStartPoint()+","+list.get(0).getTransCap());
+					Log.d("Count",list.size()+"");
+					
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+
+					mHandler.sendEmptyMessage(3);// 更新列表
+				}
+
+			}
+		}).start();
+	}
+
+	public class TaskListAdapter extends BaseAdapter {
+		private LayoutInflater mInflater;
+		private List<PlanConcreteTran> contents;
+
+		public TaskListAdapter(Context context) {
+			super();
+			// TODO Auto-generated constructor stub
+			mInflater = LayoutInflater.from(context);
+		}
+
+		public TaskListAdapter(Context context, List<PlanConcreteTran> contents) {
+			super();
+			// TODO Auto-generated constructor stub
+			mInflater = LayoutInflater.from(context);
+			this.contents = contents;
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return contents.size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return contents.get(arg0);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			ViewHolder holder;
+
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.task_info_list_item,
+						null);
+				holder = new ViewHolder();
+				holder.tv_site = (TextView) convertView
+						.findViewById(R.id.tv_site);
+				holder.tv_planId = (TextView) convertView
+						.findViewById(R.id.tv_planId);
+				holder.tv_startpoint = (TextView) convertView
+						.findViewById(R.id.tv_startpoint);
+				holder.tv_endpiont = (TextView) convertView
+						.findViewById(R.id.tv_endpiont);
+				holder.tv_send = (TextView) convertView
+						.findViewById(R.id.tv_send);
+				holder.tv_pour = (TextView) convertView
+						.findViewById(R.id.tv_pour);
+				holder.tv_receive = (TextView) convertView
+						.findViewById(R.id.tv_receive);
+				holder.pb_schedule = (ProgressBar) convertView
+						.findViewById(R.id.pb_schedule);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+
+			holder.tv_planId.setText(contents.get(position).getFplanId());
+			holder.tv_site.setText(SiteName);
+			holder.tv_startpoint
+					.setText(contents.get(position).getStartPoint());
+			holder.tv_endpiont.setText(contents.get(position).getEndPoint());
+			holder.tv_pour.setText(contents.get(position).getTransCap()+"");//方量
+			holder.tv_send.setText(contents.get(position).getCount()+"");
+			holder.tv_receive.setText(contents.get(position).getTransedCap()+"");
+			// holder.tv_endpiont.setText(contents.get(position).getEndPoint());
+			holder.pb_schedule.setMax((int)(contents.get(position).getTransCap()));
+			holder.pb_schedule.setProgress((int)contents.get(position).getTransedCap());
+			//holder.pb_schedule.setProgress(100);
+			return convertView;
+		}
+
+	}
+
+	public class ViewHolder {
+		public TextView tv_site;
+		public TextView tv_planId;
+		public TextView tv_startpoint;
+		public TextView tv_endpiont;
+		public TextView tv_send;
+		public TextView tv_pour;
+		public TextView tv_receive;
+		public ProgressBar pb_schedule;
+
+	}
+
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		
+		index=1;//初始化
+		planConcreteTranList.clear();
+		geneItems();
+
+	}
+
+	@Override
+	public void onLoadMore() {
+		// TODO Auto-generated method stub
+		index++;
+		geneItems();
+
+	}
+
+	private void onLoad() {
+		xlv_task.stopRefresh();
+		xlv_task.stopLoadMore();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
+		String date = format.format(new Date());
+		xlv_task.setRefreshTime(date);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.iv_return:
+			finish();
+			break;
+		case R.id.iv_datepre:
+			final String oldDate_pre=tv_showDate.getText().toString();
+			Date nowDate_pre = null;  
+	        try {  
+	        	nowDate_pre = new SimpleDateFormat("yyyy-MM-dd").parse(oldDate_pre);  
+	        } catch (ParseException e) {  
+	            e.printStackTrace();  
+	        }
+	        Date newDate_pre = new Date(nowDate_pre.getTime()-24*60*60*1000);  
+	        tv_showDate.setText((new SimpleDateFormat("yyyy-MM-dd").format(newDate_pre)));
+			break;
+		case R.id.iv_datenext:
+			final String oldDate_next=tv_showDate.getText().toString();
+			Date nowDate_next = null;  
+	        try {  
+	        	nowDate_next = new SimpleDateFormat("yyyy-MM-dd").parse(oldDate_next);  
+	        } catch (ParseException e) {  
+	            e.printStackTrace();  
+	        }
+	        Date newDate_next = new Date(nowDate_next.getTime()+24*60*60*1000);
+	        if(newDate_next.getTime()>Calendar.getInstance().getTime().getTime()){	        
+	        	Toast.makeText(getApplication(), "您选择的日期不能大于当前日期", Toast.LENGTH_SHORT).show(); 	        
+	        }else {	        	
+	        	tv_showDate.setText((new SimpleDateFormat("yyyy-MM-dd").format(newDate_next))); 	     	      
+			}
+	        break;
+		case R.id.tv_showDate:
+			final String[] oldDate = tv_showDate.getText().toString().split("-");
+			DatePickerDialog datePickDialog = new DatePickerDialog(
+					TaskListActivity.this,
+					new DatePickerDialog.OnDateSetListener() {
+						
+						@Override
+						public void onDateSet(DatePicker view, int year,
+								int monthOfYear, int dayOfMonth) {
+							// TODO Auto-generated method stub
+							String month = (monthOfYear >= 9) ? String.valueOf(monthOfYear + 1): ("0" + (monthOfYear + 1));
+							String day = (dayOfMonth >= 10) ? String.valueOf(dayOfMonth): ("0" + dayOfMonth);
+							final String dateselect=year+"-"+month+"-"+day;			
+							Date nowDate_set = null;  
+					        try {  
+					        	nowDate_set = new SimpleDateFormat("yyyy-MM-dd").parse(dateselect);  
+					        } catch (ParseException e) {  
+					            e.printStackTrace();  
+					        }
+					        Date newDate_set = new Date(nowDate_set.getTime());
+					        if(newDate_set.getTime()>Calendar.getInstance().getTime().getTime()){	        
+					        	Toast.makeText(getApplication(), "您选择的日期不能大于当前日期，已返回到当前日期", Toast.LENGTH_LONG).show();
+					        	
+					        }else {	        	
+					        	tv_showDate.setText((new SimpleDateFormat("yyyy-MM-dd").format(newDate_set))); 	     	      
+							}
+						}
+					},Integer.parseInt(oldDate[0]),Integer.parseInt(oldDate[1])-1,Integer.parseInt(oldDate[2]));			
+			datePickDialog.show();
+			break;
+			default:
+				break;
+		}
+	}
+
+}

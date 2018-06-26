@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:background="@color/main_tab_bg"
+        android:id="@+id/ll_tab"
+        android:layout_width="fill_parent"
+        android:layout_height="52.0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:baselineAligned="false" >
+
+        <FrameLayout
+            android:id="@+id/carinfolist"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_btn_bg" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="1.0dip"
+                android:background="@drawable/tab_btn_carinfolist" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="6.0dip"
+                android:text="@string/main_car_list"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mynews"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_btn_bg" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="1.0dip"
+                android:background="@drawable/tab_btn_mynews" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="6.0dip"
+                android:text="@string/main_news_center"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/checktask"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_btn_bg" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="1.0dip"
+                android:background="@drawable/tab_btn_myfeed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="6.0dip"
+                android:text="@string/main_check_task"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/motorinfolist"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_btn_bg" >
+
+            <ImageView
+                android:id="@+id/image_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="1.0dip"
+                android:background="@drawable/tab_btn_motorinfolist" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="6.0dip"
+                android:text="@string/main_motor_list"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+        </FrameLayout>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll_tab"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#ffffff" >
+    </FrameLayout>
+
+</RelativeLayout>

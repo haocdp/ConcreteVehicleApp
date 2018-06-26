@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#c0c0c0"
+    android:orientation="vertical" >
+
+    
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#c0c0c0"
+        android:fadingEdge="vertical"
+        android:scrollbars="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#c0c0c0"
+                android:orientation="vertical"
+                android:padding="12dp" >
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical" >
+
+<!--                     <LinearLayout -->
+<!--                         android:id="@+id/help" -->
+<!--                         android:layout_width="fill_parent" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:background="@drawable/top_biankuang" -->
+<!--                         android:clickable="true" -->
+<!--                         android:orientation="horizontal" -->
+<!--                         android:padding="10dp" > -->
+
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:layout_centerInParent="true" -->
+<!--                             android:text="@string/report_device_mileage" /> -->
+
+<!--                         <RelativeLayout -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" > -->
+
+<!--                             <ImageView -->
+<!--                                 android:id="@+id/report_device_mileage" -->
+<!--                                 android:layout_width="wrap_content" -->
+<!--                                 android:layout_height="wrap_content" -->
+<!--                                 android:layout_alignParentRight="true" -->
+<!--                                 android:layout_marginRight="8dp" -->
+<!--                                 android:background="@drawable/into_icon" /> -->
+<!--                         </RelativeLayout> -->
+<!--                     </LinearLayout> -->
+
+<!--                     <LinearLayout -->
+<!--                         android:layout_width="fill_parent" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:background="@drawable/no_yuanjiao" -->
+<!--                         android:orientation="horizontal" -->
+<!--                         android:padding="10dp" > -->
+
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:layout_centerInParent="true" -->
+<!--                             android:text="@string/report_device_warn" /> -->
+
+<!--                         <RelativeLayout -->
+<!--                             android:layout_width="fill_parent" -->
+<!--                             android:layout_height="wrap_content" > -->
+
+<!--                             <ImageView -->
+<!--                                 android:id="@+id/report_device_warn" -->
+<!--                                 android:layout_width="wrap_content" -->
+<!--                                 android:layout_height="wrap_content" -->
+<!--                                 android:layout_alignParentRight="true" -->
+<!--                                 android:layout_marginRight="8dp" -->
+<!--                                 android:background="@drawable/into_icon" /> -->
+<!--                         </RelativeLayout> -->
+<!--                     </LinearLayout> -->
+
+<!--                     <LinearLayout -->
+<!--                         android:layout_width="fill_parent" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:background="@drawable/no_yuanjiao" -->
+<!--                         android:orientation="horizontal" -->
+<!--                         android:padding="10dp" > -->
+
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:layout_centerInParent="true" -->
+<!--                             android:text="@string/day_device_oilvolumn" /> -->
+
+<!--                         <RelativeLayout -->
+<!--                             android:layout_width="fill_parent" -->
+<!--                             android:layout_height="wrap_content" > -->
+
+<!--                             <ImageView -->
+<!--                                 android:id="@+id/day_device_oilvolumn" -->
+<!--                                 android:layout_width="wrap_content" -->
+<!--                                 android:layout_height="wrap_content" -->
+<!--                                 android:layout_alignParentRight="true" -->
+<!--                                 android:layout_marginRight="8dp" -->
+<!--                                 android:background="@drawable/into_icon" /> -->
+<!--                         </RelativeLayout> -->
+<!--                     </LinearLayout> -->
+					<LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/top_biankuang"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="#000000"
+                            android:text="@string/report_day_performance" />
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <ImageView
+                                android:id="@+id/day_performance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/into_icon" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/no_yuanjiao"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="#000000"
+                            android:text="@string/report_month_performance" />
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <ImageView
+                                android:id="@+id/month_performance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/into_icon" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom_biankuang"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="#000000"
+                            android:text="@string/report_daily_vehicle" />
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <ImageView
+                                android:id="@+id/report_bound_warn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/into_icon" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>           
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

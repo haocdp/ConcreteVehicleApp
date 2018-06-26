@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/relativelayout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip"
+        android:layout_alignParentTop="true"
+        android:background="@color/main_tab_bg" >
+
+        <ImageView
+            android:id="@+id/trace_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.0dip"
+            android:src="@drawable/return_shouye_background" />
+
+        <TextView
+            android:id="@+id/tab5_rl_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="45.0dip"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="物品溯源"
+            android:textColor="#ffffffff"
+            android:textSize="18.0dip" />
+
+        
+    
+    </RelativeLayout>
+    
+	<com.baidu.mapapi.map.MapView
+	    android:id="@+id/trace_bmapView"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_alignParentBottom="true"
+	    android:layout_below="@+id/relativelayout_top"
+	    android:clickable="true" />
+    
+    <LinearLayout
+        android:id="@+id/RightMap"
+        android:layout_width="50dp"
+        android:layout_height="160dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativelayout_top"
+        android:contentDescription="地图选项"
+        android:orientation="vertical"
+        android:paddingRight="3.0dip"
+        android:paddingTop="10dp" >
+
+            <ImageView
+                android:id="@+id/trace_map_layer"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:background="@drawable/map_layer" />
+
+            <ImageView
+                android:id="@+id/trace_map_lukuang"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:layout_marginTop="10.0dip"
+                android:background="@color/bg_item_press"
+                android:src="@drawable/map_lukuang_close" />
+
+            <ImageView
+                android:id="@+id/trace_map_play"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/replay" />
+
+        </LinearLayout>
+</RelativeLayout>

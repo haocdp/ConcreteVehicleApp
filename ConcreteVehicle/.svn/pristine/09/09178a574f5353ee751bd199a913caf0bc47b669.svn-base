@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="#D2691E"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/layout_more"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/home_btn_bg" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="1.0dip"
+            android:background="@drawable/tab_btn_more" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="6.0dip"
+            android:text="设置"
+            android:textColor="#ffffff"
+            android:textSize="10sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_more"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/home_btn_bg" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="1.0dip"
+            android:background="@drawable/tab_btn_more" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="6.0dip"
+            android:text="退出"
+            android:textColor="#ffffff"
+            android:textSize="10sp" />
+    </FrameLayout>
+
+    
+
+</LinearLayout>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/info_panel_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/android_top_bg" >
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.0dip"
+            android:src="@drawable/return_shouye_background" />
+
+        <TextView
+            android:id="@+id/tab5_rl_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="45.0dip"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:paddingTop="10.0dip"
+            android:text="更多"
+            android:textColor="#ffffffff"
+            android:textSize="18.0dip" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/relativelayout_top"
+        android:background="@color/info_panel_bg" >
+
+        <!-- android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical"  设置滚动条颜色 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginTop="7.0dip"
+            android:background="@drawable/shape_bg2"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ll_sxsjjg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_marginTop="7.0dip"
+                android:background="@drawable/shape_bg2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="left"
+                    android:paddingBottom="8.0dip"
+                    android:paddingLeft="5.0dip"
+                    android:paddingTop="8.0dip"
+                    android:text="仓库管理"
+                    android:textColor="@color/text_huise1_color"
+                    android:textSize="15.0sp" />
+
+                <ImageView
+                    android:layout_width="12.0dip"
+                    android:layout_height="12.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:src="@drawable/into_icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_marginTop="7.0dip"
+                android:background="@drawable/shape_bg2"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/ll_sxsjjg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gengduo_above_xml_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5.0dip" >
+
+                    <TextView
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="left"
+                        android:paddingBottom="8.0dip"
+                        android:paddingLeft="5.0dip"
+                        android:paddingTop="8.0dip"
+                        android:text="间隔"
+                        android:textColor="@color/text_huise1_color"
+                        android:textSize="15.0sp" />
+
+                    <ImageView
+                        android:layout_width="12.0dip"
+                        android:layout_height="12.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:src="@drawable/into_icon" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#ffe0e0e0" />
+
+                <LinearLayout
+                    android:id="@+id/ll_liebiaopsize"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gengduo_blow_xml_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5.0dip" >
+
+                    <TextView
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="left"
+                        android:paddingBottom="8.0dip"
+                        android:paddingLeft="5.0dip"
+                        android:paddingTop="8.0dip"
+                        android:text="行数"
+                        android:textColor="@color/text_huise1_color"
+                        android:textSize="15.0sp" />
+
+                    <ImageView
+                        android:layout_width="12.0dip"
+                        android:layout_height="12.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:src="@drawable/into_icon" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_marginTop="7.0dip"
+                android:background="@drawable/shape_bg2"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/ll_xgmm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gengduo_center_xml_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5.0dip" >
+
+                    <!-- <ImageView -->
+                    <!-- android:layout_width="wrap_content" -->
+                    <!-- android:layout_height="wrap_content" -->
+                    <!-- android:src="@drawable/set_icon_xgmm" /> -->
+
+                    <TextView
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="left"
+                        android:paddingBottom="8.0dip"
+                        android:paddingLeft="5.0dip"
+                        android:paddingTop="8.0dip"
+                        android:text="名称"
+                        android:textColor="@color/text_huise1_color"
+                        android:textSize="15.0sp" />
+
+                    <ImageView
+                        android:layout_width="12.0dip"
+                        android:layout_height="12.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:src="@drawable/into_icon" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#ffe0e0e0" />
+
+                <LinearLayout
+                    android:id="@+id/ll_about"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gengduo_blow_xml_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5.0dip" >
+
+                    <!-- <ImageView -->
+                    <!-- android:layout_width="wrap_content" -->
+                    <!-- android:layout_height="wrap_content" -->
+                    <!-- android:src="@drawable/set_icon_about" /> -->
+
+                    <TextView
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="left"
+                        android:paddingBottom="8.0dip"
+                        android:paddingLeft="5.0dip"
+                        android:paddingTop="8.0dip"
+                        android:text="关于"
+                        android:textColor="@color/text_huise1_color"
+                        android:textSize="15.0sp" />
+
+                    <ImageView
+                        android:layout_width="12.0dip"
+                        android:layout_height="12.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:src="@drawable/into_icon" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_exit"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_marginBottom="10.0dp"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_marginTop="20.0dip"
+                android:background="@drawable/btn_exit_bg"
+                android:gravity="center"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="8.0dip"
+                android:text="退出当前账号"
+                android:textColor="#ffffffff"
+                android:textSize="17.0sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

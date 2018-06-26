@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popview_dialog_bg"
+    android:orientation="horizontal"     
+    >
+
+<!--     <LinearLayout -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="match_parent" -->
+<!--         android:layout_marginLeft="5dp"         -->
+<!--         android:orientation="horizontal" -->
+<!--         android:padding="3dp" > -->
+
+<!--         <LinearLayout -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="match_parent" -->
+<!--             android:layout_marginTop="5dp" -->
+<!--             android:orientation="vertical" -->
+<!--             android:padding="3dp" > -->
+
+<!--             <ImageView -->
+<!--                 android:id="@+id/iv_mapmode_3d" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:src="@drawable/map_mode_3d" /> -->
+
+<!--             <TextView -->
+<!--                 android:id="@+id/tv_mapmode_3d" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_gravity="center_horizontal" -->
+<!--                 android:drawableTop="@drawable/map_mode_3d" -->
+<!--                 android:text="3D" /> -->
+<!--         </LinearLayout> -->
+
+<!--         <LinearLayout -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="match_parent" -->
+<!--             android:layout_marginTop="5dp" -->
+<!--             android:orientation="vertical" -->
+<!--             android:padding="3dp" > -->
+
+<!--             <ImageView -->
+<!--                 android:id="@+id/iv_mapmode_satellite" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:src="@drawable/map_mode_satellite" /> -->
+
+<!--             <TextView -->
+<!--                 android:id="@+id/tv_mapmode_satellite" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_gravity="center_horizontal" -->
+<!--                 android:drawableTop="@drawable/map_mode_satellite" -->
+<!--                 android:text="卫星图" /> -->
+<!--         </LinearLayout> -->
+
+<!--         <LinearLayout -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="match_parent" -->
+<!--             android:layout_marginTop="5dp" -->
+<!--             android:orientation="vertical" -->
+<!--             android:padding="3dp" > -->
+
+<!--             <ImageView -->
+<!--                 android:id="@+id/iv_mapmode_plain" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:src="@drawable/map_mode_plain" /> -->
+
+<!--             <TextView -->
+<!--                 android:id="@+id/tv_mapmode_plain" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_gravity="center_horizontal" -->
+<!--                 android:drawableTop="@drawable/map_mode_plain" -->
+<!--                 android:text="平面图" /> -->
+<!--         </LinearLayout> -->
+<!--     </LinearLayout> -->
+		<TextView
+                android:id="@+id/tv_mapmode_3d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_horizontal"                
+                android:layout_gravity="center_horizontal"
+                android:drawableTop="@drawable/map_mode_3d"
+                android:text="3D" />
+
+            <TextView
+                android:id="@+id/tv_mapmode_satellite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_horizontal"                
+                android:layout_gravity="center_horizontal"
+                android:drawableTop="@drawable/map_mode_satellite"
+                android:text="卫星图" />
+
+            <TextView
+                android:id="@+id/tv_mapmode_plain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_horizontal"                
+                android:layout_gravity="center_horizontal"
+                android:drawableTop="@drawable/map_mode_plain"
+                android:text="平面图" />
+</LinearLayout>

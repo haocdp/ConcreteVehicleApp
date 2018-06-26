@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@drawable/popup_pointer_button_normal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_vehicleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/tv_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:textColor="#FF0000" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/group_divider" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="上传时间:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:maxWidth="320.0dip"
+            android:minWidth="40.0dip"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="速度:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text=""
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dp"
+            android:text="里程:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_mileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="ssss"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="油量:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_oilVolumn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text=""
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="ACC状态:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="ssss"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="经度:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text=""
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="纬度:"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:maxWidth="200.0dip"
+            android:minWidth="40.0dip"
+            android:text="ssss"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</LinearLayout>

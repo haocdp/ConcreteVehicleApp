@@ -1,0 +1,100 @@
+package com.hbjy.device;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hbjy.adapter.ExAdapter;
+import com.hbjy.carlocation.R;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+
+public class TargetFragment extends Fragment {
+
+	List<String> groupData = new ArrayList<String>();
+	List<List<String>> childData = new ArrayList<List<String>>();
+
+	ExAdapter adapter;
+	ExpandableListView exList;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		InitData();
+		adapter = new ExAdapter(getActivity(),groupData,childData);
+		
+	}
+
+	private void InitData() {
+		// TODO Auto-generated method stub
+		groupData.add("档案信息");
+		groupData.add("车辆信息");
+		//groupData.add("保养/保险/年检信息");
+		groupData.add("一键呼叫");
+		
+		List<String> child1 = new ArrayList<String>();
+		child1.add("设备名称:");
+		child1.add("设备型号:");
+		child1.add("IMEI/ID号:");
+		child1.add("流量卡号:");
+		child1.add("开通日期:");
+		child1.add("服务到期:");
+		child1.add("联系人:");
+		child1.add("联系电话:");
+		child1.add("备注:");
+		childData.add(child1);
+		
+		List<String> child2 = new ArrayList<String>();
+		child2.add("设备编号:");
+		child2.add("安装日期:");
+//		child2.add("设备登录:");
+		child2.add("汽车品牌:");
+		child2.add("汽车型号:");
+		child2.add("汽车排量:");
+		child2.add("车架号:");
+//		child2.add("汽车购买日期:");
+		child2.add("SIM卡到期:");
+		childData.add(child2);
+		
+//		List<String> child3 = new ArrayList<String>();
+//		child3.add("保养里程周期:");
+//		child3.add("保养时间周期:");
+//		child3.add("下次保养里程:");
+//		child3.add("下次保养日期:");
+//		child3.add("保险公司:");
+//		child3.add("保险周期:");
+//		child3.add("保单号:");
+//		child3.add("保单生效日期:");
+//		child3.add("下次续保日期:");
+//		child3.add("年检周期:");
+//		child3.add("下次年检日期:");
+//		childData.add(child3);
+		
+		List<String> child4 = new ArrayList<String>();
+		child4.add("保险号码:");
+		child4.add("汽车租赁:");
+		child4.add("4S店:");
+		child4.add("紧急救援:");
+		child4.add("代驾:");
+		childData.add(child4);
+
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.fragment_device_target, null);
+		exList = (ExpandableListView) view.findViewById(R.id.expandableListView1);
+		exList.setAdapter(adapter);
+		exList.setDivider(null);
+		exList.setGroupIndicator(null);
+		return view;
+	}
+
+}

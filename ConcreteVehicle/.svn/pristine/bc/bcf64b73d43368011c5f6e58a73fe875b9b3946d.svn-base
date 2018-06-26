@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280.0dip"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@color/info_panel_bg"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="35.0dip"
+        android:background="@drawable/android_top_bg"
+        android:gravity="center"
+        android:text="结束时间"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_shape_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/inputEndDate"
+                android:layout_width="125.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginTop="10.0dip"
+                android:editable="false"
+                android:cursorVisible="true"
+                android:hint="结束日期"
+                android:textSize="17.0dip" />
+
+            <EditText
+                android:id="@+id/inputEndTime"
+                android:layout_width="110.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginRight="5.0dip"
+                android:layout_marginTop="10.0dip"
+                android:editable="false"
+                android:cursorVisible="true"
+                android:hint="结束时间"
+                android:textSize="17.0dip" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/s_selectTime"
+            android:layout_width="245.0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:layout_marginTop="8.0dip"
+            android:entries="@array/TimeArray" />
+
+        <Spinner
+            android:id="@+id/s_selectSpeed"
+            android:layout_width="245.0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:entries="@array/SpeedArray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:layout_weight="2.0"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/inputTimeOk"
+                android:layout_width="0.0dip"
+                android:layout_height="45.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/dialog_ok_bg"
+                android:text="确定" />
+
+            <Button
+                android:id="@+id/inputTimeCancel"
+                android:layout_width="0.0dip"
+                android:layout_height="45.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/dialog_cancel_bg"
+                android:text="取消" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,179 @@
+package com.hbjy;
+
+import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+import android.widget.PopupWindow.OnDismissListener;
+
+import com.hbjy.carlocation.R;
+
+public class MainActivity extends FragmentActivity implements OnClickListener {
+
+	private CarInfoListFragment carInfoListPage;
+	private MyNewsFragment myNewsPage;
+	private SiteInfoListFragment siteInfoListPage;
+	private ManageStorageFragment manageStoragePage;
+	private MoreFragment morePage;
+	private MotorInfoListFragment motorInfoListPage;
+	private FrameLayout mylocation, checktask, mynews, carInfoList,
+			travelRecord, oilCost,manageStorage,motorInfoList,settings,more;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_main);		
+		setupView();
+		clickCarinfoList();
+	}
+
+	private void setupView() {
+		carInfoList = (FrameLayout) findViewById(R.id.carinfolist);
+		mynews = (FrameLayout) findViewById(R.id.mynews);
+		checktask = (FrameLayout) findViewById(R.id.checktask);
+		//manageStorage = (FrameLayout) findViewById(R.id.managestorage);
+		motorInfoList = (FrameLayout) findViewById(R.id.motorinfolist);
+		more = (FrameLayout) findViewById(R.id.layout_more);//¸ü¶à
+
+		carInfoList.setOnClickListener(this);
+		mynews.setOnClickListener(this);
+		checktask.setOnClickListener(this);
+		//manageStorage.setOnClickListener(this);
+		motorInfoList.setOnClickListener(this);
+		more.setOnClickListener(this);
+//		iv_toggle = (ImageView) findViewById(R.id.toggle_btn);
+//		iv_toggle.setOnClickListener(this);
+//		iv_plus = (ImageView) findViewById(R.id.plus_btn);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.carinfolist:
+			clickCarinfoList();
+			break;
+		case R.id.mynews:
+			clickMyNews();
+			break;
+		case R.id.checktask:
+			clickCheckTask();
+			break;
+//		case R.id.managestorage:
+//			clickManageStorage();
+//			break;
+		case R.id.motorinfolist:
+			clickReportsCenter();
+			break;
+		case R.id.layout_more:
+			clickPlusBtn(v);
+			break;
+////		case R.id.toggle_btn:
+////			clickPlusBtn();
+//			break;
+		default:
+			break;
+		}
+	}
+
+	private void clickCarinfoList() {
+		carInfoListPage = new CarInfoListFragment();
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.frame_content, carInfoListPage);
+		fragmentTransaction.commit();
+		carInfoList.setSelected(true);
+		mynews.setSelected(false);
+		checktask.setSelected(false);
+		motorInfoList.setSelected(false);
+		//manageStorage.setSelected(false);
+		more.setSelected(false);
+
+	}
+
+	private void clickMyNews() {
+		myNewsPage = new MyNewsFragment();
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.frame_content, myNewsPage);
+		fragmentTransaction.commit();
+		carInfoList.setSelected(false);
+		mynews.setSelected(true);
+		checktask.setSelected(false);
+		motorInfoList.setSelected(false);
+		//manageStorage.setSelected(false);
+		more.setSelected(false);
+
+	}
+
+	private void clickCheckTask() {
+		siteInfoListPage = new SiteInfoListFragment();
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.frame_content, siteInfoListPage);
+		fragmentTransaction.commit();
+		carInfoList.setSelected(false);
+		mynews.setSelected(false);
+		checktask.setSelected(true);
+		//manageStorage.setSelected(false);
+		motorInfoList.setSelected(false);
+		more.setSelected(false);
+
+	}
+	private void clickReportsCenter() {
+		motorInfoListPage = new MotorInfoListFragment();
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.frame_content, motorInfoListPage);
+		fragmentTransaction.commit();
+		carInfoList.setSelected(false);
+		mynews.setSelected(false);
+		checktask.setSelected(false);
+		motorInfoList.setSelected(true);
+		more.setSelected(false);
+	}
+//	private void clickManageStorage() {
+//		manageStoragePage = new ManageStorageFragment();
+//		FragmentTransaction fragmentTransaction = this
+//				.getSupportFragmentManager().beginTransaction();
+//		fragmentTransaction.replace(R.id.frame_content, manageStoragePage);
+//		fragmentTransaction.commit();
+//		carInfoList.setSelected(false);
+//		mynews.setSelected(false);
+//		checktask.setSelected(false);
+//		manageStorage.setSelected(true);
+//		more.setSelected(false);
+//	}
+
+	private void clickPlusBtn(View v) {
+		morePage = new MoreFragment();
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.frame_content, morePage);
+		fragmentTransaction.commit();
+		carInfoList.setSelected(false);
+		mynews.setSelected(false);
+		checktask.setSelected(false);
+		//manageStorage.setSelected(false);
+		motorInfoList.setSelected(false);
+		more.setSelected(true);
+		
+	}
+
+	private void restorePlusBtn() {
+//		iv_toggle.setImageResource(R.drawable.qz_bg_toolbar_btn_normal);
+//		iv_plus.setImageResource(R.drawable.qz_icon_toolbar_plus);
+	}
+	
+
+
+}

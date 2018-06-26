@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/info_panel_bg"
+    android:orientation="vertical" 
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/info_panel_bg"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/android_top_bg" >
+
+            <ImageView
+                android:id="@+id/iv_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4.0dip"
+                android:src="@drawable/return_shouye_background" />
+
+            <TextView
+                android:id="@+id/tab5_rl_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="45.0dip"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:paddingTop="10.0dip"
+                android:text="油耗"
+                android:textColor="#ffffff"
+                android:textSize="18.0dip" />
+        </RelativeLayout>
+         <LinearLayout
+            android:id="@+id/oilLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/relativelayout_top"
+            android:paddingBottom="5dip"
+            android:paddingTop="10dip" >
+
+            <TextView
+                android:id="@+id/tv_avg_oil"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="平均油耗"
+                android:textColor="@color/lightwhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_total_mileage"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="总里程"
+                android:textColor="@color/lightblack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_total_oil"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="耗油总量"
+                android:textColor="@color/lightblack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_total_oilprice"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="总耗油费"
+                android:textColor="@color/lightblack"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/tab"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:layout_below="@id/oilLayout1"
+            >           
+	         
+            <ImageView	        
+                 android:id="@+id/iv_line"
+                 android:layout_width="50dip"
+                 android:layout_height="2dip"
+                 android:layout_marginLeft="20dip"
+                 android:scaleType="matrix"
+                 android:src="#ff0000" />	         
+            </LinearLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/oilLayout1"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:flipInterval="30"
+            android:persistentDrawingCache="animation" /> 
+    </RelativeLayout>
+
+</LinearLayout>

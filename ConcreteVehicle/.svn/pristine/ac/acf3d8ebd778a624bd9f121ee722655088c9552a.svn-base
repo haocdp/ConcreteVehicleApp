@@ -1,0 +1,176 @@
+package com.hbjy.beans;
+
+public class VehicleMileageRecord {
+
+	private String vehiclenum;// 车牌号
+
+	private String acc;// acc状态
+
+	private String speed;// 速度
+
+	private String s_long;// 开始点经度
+
+	private String s_lat;//
+
+	private double s_oils;// 油耗
+
+	private double s_miles;// 里程
+
+	private String starttime;
+
+	private String e_long;// 结束点经度
+
+	private String e_lat;
+
+	private double e_miles;
+
+	private double e_oils;
+
+	private String endtime;
+
+	private String startPoint;
+	private String endPoint;
+	private double miles;
+	private double oils;
+
+	public String getVehiclenum() {
+		return vehiclenum;
+	}
+
+	public void setVehiclenum(String vehiclenum) {
+		this.vehiclenum = vehiclenum;
+	}
+
+	public String getAcc() {
+		return acc;
+	}
+
+	public void setAcc(String acc) {
+		this.acc = acc;
+	}
+
+	public String getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(String speed) {
+		this.speed = speed;
+	}
+
+	public String getS_long() {
+		return s_long;
+	}
+
+	public void setS_long(String s_long) {
+		this.s_long = s_long;
+	}
+
+	public String getS_lat() {
+		return s_lat;
+	}
+
+	public void setS_lat(String s_lat) {
+		this.s_lat = s_lat;
+	}
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getE_long() {
+		return e_long;
+	}
+
+	public void setE_long(String e_long) {
+		this.e_long = e_long;
+	}
+
+	public String getE_lat() {
+		return e_lat;
+	}
+
+	public void setE_lat(String e_lat) {
+		this.e_lat = e_lat;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+
+	
+
+	public String getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(String startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public String getEndPoint() {
+		return endPoint;
+	}
+
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
+	}
+
+	public double getS_oils() {
+		return s_oils;
+	}
+
+	public void setS_oils(double s_oils) {
+		this.s_oils = s_oils;
+	}
+
+	public double getS_miles() {
+		return s_miles;
+	}
+
+	public void setS_miles(double s_miles) {
+		this.s_miles = s_miles;
+	}
+
+	public double getE_miles() {
+		return e_miles;
+	}
+
+	public void setE_miles(double e_miles) {
+		this.e_miles = e_miles;
+	}
+
+	public double getE_oils() {
+		return e_oils;
+	}
+
+	public void setE_oils(double e_oils) {
+		this.e_oils = e_oils;
+	}
+
+	public double getMiles() {
+		return miles;
+	}
+
+	public void setMiles(double miles) {
+		this.miles = miles;
+	}
+
+	public double getOils() {
+		return oils;
+	}
+
+	public void setOils(double oils) {
+		this.oils = oils;
+	}
+	
+	
+
+}

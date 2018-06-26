@@ -1,0 +1,182 @@
+package com.hbjy.beans;
+
+public class Vehicle {
+	public boolean attentionFlag;
+	public Boolean	getAttentionFlag() {
+		return attentionFlag;
+	}
+
+	public void setAttentionFlag(Boolean attentionFlag) {
+		this.attentionFlag = attentionFlag;
+	}
+	public String vehicleId;
+
+	public String fInnerId;
+
+	public String vehiclenum;
+
+	public String customerID;
+
+	public String vehicleType;
+
+	public String sim;
+
+	public String gpsstatus;
+
+	public String latitude;
+
+	public String longitude;
+
+	public String direction;
+
+	public String inserttime;
+	
+	public String accstatus;
+	
+	public String speed;
+	
+	public String mileage;
+	
+	public String gpsgeoposition;
+	
+	public String oilVolumn;
+	
+	public String status;
+	
+	public String getGpsstatus() {
+		return gpsstatus;
+	}
+
+	public void setGpsstatus(String gpsstatus) {
+		this.gpsstatus = gpsstatus;
+	}
+
+	public String getAccstatus() {
+		return accstatus;
+	}
+
+	public void setAccstatus(String accstatus) {
+		this.accstatus = accstatus;
+	}
+
+	public String getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(String speed) {
+		this.speed = speed;
+	}
+
+	public String getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
+	}
+
+	public String getGpsgeoposition() {
+		return gpsgeoposition;
+	}
+
+	public void setGpsgeoposition(String gpsgeoposition) {
+		this.gpsgeoposition = gpsgeoposition;
+	}
+
+	public String getOilVolumn() {
+		return oilVolumn;
+	}
+
+	public void setOilVolumn(String oilVolumn) {
+		this.oilVolumn = oilVolumn;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public String getInserttime() {
+		return inserttime;
+	}
+
+	public void setInserttime(String inserttime) {
+		this.inserttime = inserttime;
+	}
+
+	public String getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(String vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	public String getfInnerId() {
+		return fInnerId;
+	}
+
+	public void setfInnerId(String fInnerId) {
+		this.fInnerId = fInnerId;
+	}
+
+	public String getVehiclenum() {
+		return vehiclenum;
+	}
+
+	public void setVehiclenum(String vehiclenum) {
+		this.vehiclenum = vehiclenum;
+	}
+
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+	public String getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public String getSim() {
+		return sim;
+	}
+
+	public void setSim(String sim) {
+		this.sim = sim;
+	}
+
+}

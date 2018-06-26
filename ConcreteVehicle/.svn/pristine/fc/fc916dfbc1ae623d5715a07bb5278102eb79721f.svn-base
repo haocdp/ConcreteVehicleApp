@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/childlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/info_panel_bg"
+    >
+    
+	<ImageView  
+        android:id="@+id/child_image"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_marginLeft="40dp"  
+        android:paddingTop="10dp" >  
+    </ImageView>  
+
+    <LinearLayout  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:orientation="vertical" 
+        android:layout_marginLeft="25dp"
+        >  
+
+        <TextView  
+            android:id="@+id/child_text"  
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"  
+            android:layout_gravity="center_vertical"  
+            android:gravity="center_vertical"  
+            android:text=""  
+            android:textColor="@color/lightblack"  
+            android:textSize="15sp" >  
+        </TextView>  
+
+<!--         <TextView   -->
+<!--             android:id="@+id/child_text2"   -->
+<!--             android:layout_width="wrap_content"   -->
+<!--             android:layout_height="wrap_content"   -->
+<!--             android:layout_gravity="center_vertical"   -->
+<!--             android:gravity="center_vertical"   -->
+<!--             android:text=""   -->
+<!--             android:textColor="#FFFFFF"   -->
+<!--             android:textSize="20sp" >   -->
+<!--         </TextView>   -->
+    </LinearLayout> 
+</LinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_targetnav"
+    android:layout_width="280.0dip"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35.0dip"
+        android:background="@drawable/android_top_bg"
+        android:gravity="center"
+        android:text="目标导航"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_shape_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_drive"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_targetnav_bg"
+            android:gravity="left|center"
+            android:padding="15.0dip"
+            android:text="驾车"
+            android:textColor="#ff000000"
+            android:textSize="18.0sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:background="#fff1f1f1" />
+
+        <Button
+            android:id="@+id/btn_walk"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_targetnav_bg"
+            android:gravity="left|center"
+            android:padding="15.0dip"
+            android:text="步行"
+            android:textColor="#ff000000"
+            android:textSize="18.0sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:background="#fff1f1f1" />
+
+        <Button
+            android:id="@+id/btn_bus"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_targetnav_bg"
+            android:gravity="left|center"
+            android:padding="15.0dip"
+            android:text="公交"
+            android:textColor="#ff000000"
+            android:textSize="18.0sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.0"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_baidunav"
+                android:layout_width="0.0dip"
+                android:layout_height="45.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/track_ok_normal"
+                android:text="@string/bdnav" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0.0dip"
+                android:layout_height="45.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/track_cancel_normal"
+                android:text="@string/cancel" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

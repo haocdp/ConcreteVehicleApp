@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_taskdetail"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+     >
+
+    <ImageView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/vehicle_type_car" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/start"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_vehicleId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="鄂AHU932"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/carnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/carinfotextcolor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acc状态:"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0sp" />
+
+            <TextView
+                android:id="@+id/tv_accStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="123"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="16.0dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="总里程"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0sp" />
+
+            <TextView
+                android:id="@+id/tv_totalmile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="24.6Km"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="方量 :"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0sp" />
+
+            <TextView
+                android:id="@+id/tv_cube"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="240"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="16.0dip" />
+
+           
+			 
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="0.8Km"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0dip" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在派送的工地:"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0sp" />
+            <TextView
+                android:id="@+id/tv_site2send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="省出版城2号工地"
+                android:textColor="@color/carinfotextcolor"
+                android:textSize="14.0dip" />
+            
+            
+        </LinearLayout>
+    </LinearLayout>
+
+<!--     <ImageView -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_centerVertical="true" -->
+<!--         android:layout_gravity="center_vertical" -->
+<!--         android:layout_marginRight="8dp" -->
+<!--         android:background="@drawable/into_icon" /> -->
+
+</RelativeLayout>

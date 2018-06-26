@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_marginTop="10.0dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30.0dp"
+        android:layout_marginRight="30.0dp"
+        android:background="@color/white"
+        android:padding="10.0dp" >
+
+        <LinearLayout
+            android:id="@+id/ll_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/login_user" />
+
+            <EditText
+                android:id="@+id/et_ip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dp"
+                android:hint="请输入Ip地址"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_username"
+            android:layout_marginTop="10.0dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/login_password" />
+
+            <EditText
+                android:id="@+id/et_port"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dp"
+                android:hint="请输入端口号"
+                android:inputType="number"   
+                android:singleLine="true" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dp"
+            android:layout_below="@id/ll_pwd"
+            android:layout_marginBottom="10.0dp"
+            android:layout_marginTop="10.0dp"
+            android:background="@drawable/login_btn_bg"
+            android:text="保存"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+</LinearLayout>
